@@ -26,7 +26,7 @@ function LoginPage() {
     return (
         <div className="login-container">
             <div className="login-form">
-                <h2>Login Form</h2>
+                <h2>Welcome Back ! user</h2>
                 <form onSubmit={handleSubmit} >
                     <div className="input-group">
                         <label htmlFor="email">Email or Phone</label>

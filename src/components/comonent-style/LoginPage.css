@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #4CAF50; /* Green background */
+    background-color:#fff;
   }
   
   .login-form {
@@ -40,11 +40,11 @@
     display: block;
     text-align: right;
     margin-bottom: 10px;
-    color: #4CAF50; /* Green link color */
+    color:  #23527c; /* Green link color */
   }
   
   .login-button {
-    background-color: #4CAF50; /* Green button */
+    background-color:  #23527c; /* Green button */
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -59,7 +59,7 @@
   }
   
   .signup-link a {
-    color: #4CAF50; /* Green link color */
+    color:  #23527c;
     text-decoration: none;
   }
   
