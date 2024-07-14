@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import "./comonent-style/RegisterPage.css";
+
 
 const RegisterPage = () => {
     const [name, setName] = useState("");
@@ -22,8 +24,21 @@ const RegisterPage = () => {
         console.log("Confirm Password:", confirmPassword);
         console.log("Username:", username);
         console.log("Terms Accepted:", termsAccepted);
-       
-        navigate('/homepage');
+
+        const data = {
+            name: `${name}`,
+            email: `${email}`,
+            password: `${password}`,
+            username: `${username}`,
+        };
+
+        axios
+            .post("http://localhost:5000/api/register", data)
+            .then((response) => {
+                console.log(response.data);
+                navigate('/homepage');
+            })
+            .catch((error) => console.error(error));
     };
 
     return (<div className="register-container">
@@ -92,7 +107,7 @@ const RegisterPage = () => {
                 </div>
                 <button type="submit">Register Now</button>
             </form>
-            <p className="signup-link">
+            <p className="login-link">
                 Already Have Account <Link to="/">Login</Link>
             </p> </div>
     </div>

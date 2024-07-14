@@ -1,9 +1,4 @@
-.postitem{
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .Post {
   width: 500px;
   margin: 20px;

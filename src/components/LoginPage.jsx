@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import "./comonent-style/LoginPage.css";
+
 
 function LoginPage() {
 
@@ -10,23 +12,23 @@ function LoginPage() {
 
     const navigate = useNavigate();
 
-    function handleEmailChange(event){
-        setEmail(event.target.value);
-       
-    };
-
-    function handlePasswordChange(event){
-        setPassword(event.target.value);
-       
-    };
-
-    function handleSubmit(event){
+    function handleSubmit(event) {
         event.preventDefault();
         console.log(email);
         console.log(password);
-        
-        navigate('/homepage');
 
+        const data = {
+            email: `${email}`,
+            password: `${password}`
+          };
+
+        axios
+            .post("http://localhost:5000/api/login", data)
+            .then((response) => {
+                console.log(response.data);
+                navigate('/homepage');
+            })
+            .catch((error) => console.error(error));
     };
 
     return (
@@ -40,7 +42,7 @@ function LoginPage() {
                             type="text"
                             id="email"
                             value={email}
-                            onChange={handleEmailChange}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
@@ -50,7 +52,7 @@ function LoginPage() {
                             type="password"
                             id="password"
                             value={password}
-                            onChange={handlePasswordChange}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                     </div>
