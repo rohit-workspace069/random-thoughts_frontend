@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./comonent-style/LoginPage.css";
 
 function LoginPage() {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
+    const navigate = useNavigate();
 
     function handleEmailChange(event){
         setEmail(event.target.value);
@@ -20,6 +24,8 @@ function LoginPage() {
         event.preventDefault();
         console.log(email);
         console.log(password);
+        
+        navigate('/homepage');
 
     };
 
@@ -56,7 +62,7 @@ function LoginPage() {
                     </button>
                 </form>
                 <p className="signup-link">
-                    Not a member? <a href="#">Signup now</a>
+                    Not a member? <Link to="/signup">Sign up</Link>
                 </p>
             </div>
         </div>
