@@ -1,7 +1,7 @@
 const allposts = [
     {
         id: 1,
-        username: "Rohit@001",
+        username: "Rohit Ahirwar",
         content: '“Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.”',
         like: "108",
         commentCount: "23",
