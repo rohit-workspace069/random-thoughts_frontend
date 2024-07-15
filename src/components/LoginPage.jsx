@@ -9,26 +9,41 @@ function LoginPage() {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [isVisible, setIsVisible] = useState(false);
+    const [returnMessage, setreturnMessage] = useState();
 
     const navigate = useNavigate();
 
+
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(email);
-        console.log(password);
 
         const data = {
             email: `${email}`,
             password: `${password}`
-          };
+        };
 
         axios
             .post("http://localhost:5000/api/login", data)
             .then((response) => {
-                console.log(response.data);
-                navigate('/homepage');
+                const serverResponse = response.data.message;
+                if (serverResponse === "Account not exist, Try SignUp") {
+                    setreturnMessage("Account not exist, SignUp Now !");
+                    setIsVisible(true);
+                } else if (serverResponse === "correct password") {
+                    navigate('/homepage');
+                } else {
+                    setreturnMessage("your password was incorrect. Try again with correct password");
+                    setIsVisible(true);
+                }
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                console.error(error);
+                
+                setreturnMessage("server error. Try again after sometime");
+                setIsVisible(true);
+
+            });
     };
 
     return (
@@ -66,6 +81,9 @@ function LoginPage() {
                 <p className="signup-link">
                     Not a member? <Link to="/signup">Sign up</Link>
                 </p>
+                <div className="messagebox" style={{ display: isVisible ? 'block' : 'none' }}>
+                    <p>*{returnMessage}</p>
+                </div>
             </div>
         </div>
     );
