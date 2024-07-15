@@ -12,33 +12,46 @@ const RegisterPage = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [username, setUsername] = useState("");
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [returnMessage, setreturnMessage] = useState("");
 
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Perform registration logic here
-        console.log("Name:", name);
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Confirm Password:", confirmPassword);
-        console.log("Username:", username);
-        console.log("Terms Accepted:", termsAccepted);
 
-        const data = {
-            name: `${name}`,
-            email: `${email}`,
-            password: `${password}`,
-            username: `${username}`,
-        };
+        if (password === confirmPassword) {
+            const data = {
+                name: `${name}`,
+                email: `${email}`,
+                password: `${password}`,
+                username: `${username}`,
+            };
 
-        axios
-            .post("http://localhost:5000/api/register", data)
-            .then((response) => {
-                console.log(response.data);
-                navigate('/homepage');
-            })
-            .catch((error) => console.error(error));
+            axios
+                .post("http://localhost:5000/api/register", data)
+                .then((response) => {
+                    const serverResponse = response.data.message;
+                    if (serverResponse === "Account already exist, Try Login") {
+                        setreturnMessage("Account already exist with this email, Try Login");
+                        setIsVisible(true);
+                    } else if (serverResponse === "Registraion Done successfully!") {
+                        navigate('/homepage');
+                    } else {
+                        setreturnMessage("Unknown error");
+                        setIsVisible(true);
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    setreturnMessage("Unknown server error, Try again after sometime");
+                    setIsVisible(true);
+                });
+        } else { 
+            setreturnMessage("confirm password did not match! try again!");
+                    setIsVisible(true);
+        }
+
     };
 
     return (<div className="register-container">
@@ -109,7 +122,11 @@ const RegisterPage = () => {
             </form>
             <p className="login-link">
                 Already Have Account <Link to="/">Login</Link>
-            </p> </div>
+            </p>
+            <div className="messagebox" style={{ display: isVisible ? 'block' : 'none' }}>
+                <p>*{returnMessage}</p>
+            </div>
+        </div>
     </div>
 
     );
