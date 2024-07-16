@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import "./comonent-style/RegisterPage.css";
 
 
-const RegisterPage = () => {
+function RegisterPage () {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ const RegisterPage = () => {
                         setreturnMessage("Account already exist with this email, Try Login");
                         setIsVisible(true);
                     } else if (serverResponse === "Registraion Done successfully!") {
-                        navigate('/homepage');
+                        navigate('/profilepage');
                     } else {
                         setreturnMessage("Unknown error");
                         setIsVisible(true);
@@ -121,7 +121,7 @@ const RegisterPage = () => {
                 <button type="submit">Register Now</button>
             </form>
             <p className="login-link">
-                Already Have Account <Link to="/">Login</Link>
+                Already Have Account <Link to="/login">Login</Link>
             </p>
             <div className="messagebox" style={{ display: isVisible ? 'block' : 'none' }}>
                 <p>*{returnMessage}</p>

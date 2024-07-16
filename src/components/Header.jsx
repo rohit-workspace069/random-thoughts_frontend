@@ -1,40 +1,32 @@
 import React from "react";
 import "./comonent-style/Header.css";
-
-
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <img src="logo.png" alt="Connect To Me logo" />
+      <Link to="/" ><img src="resources\logo.png" alt="logo" /></Link>
       </div>
       <nav className="nav">
         <ul>
           <li>
-            <a className="nav-link" href="/homepage">
-              Home
-            </a>
+          <Link className="nav-link" to="/" >Home</Link>
           </li>
           <li>
-            <a className="nav-link" href="/homepage">
-              Profile
-            </a>
+          <Link className="nav-link" to="/profilepage" >Profile</Link>
           </li>
           <li>
-            <a className="nav-link" href="/homepage">
-              Message
-            </a>
+          <Link className="nav-link" to="/createpost" >Post+</Link>
           </li>
           <li>
-            <a className="nav-link" href="/homepage">
-              Notifications
-            </a>
+          <Link className="nav-link" to='/workinprogress' >Message</Link>
           </li>
           <li>
-            <a className="nav-link" href="/home">
-              Settings
-            </a>
+          <Link className="nav-link" to='/workinprogress' >Notifications</Link> 
+          </li>
+          <li>
+          <Link className="nav-link" to='/workinprogress' >Settings</Link>  
           </li>
         </ul>
       </nav>
@@ -43,16 +35,16 @@ function Header() {
         <button>Search</button>
       </div>
       <div className="profile-dropdown">
-        <img src="/homepage" alt="profile" />
+        <img src="resources\rohitprofile.jpg" alt="profile" />
         <ul>
           <li>
-            <a href="/homepage">View Profile</a>
+          <Link to="/profilepage" >View Profile</Link>
           </li>
           <li>
-            <a href="#">Settings</a>
+          <Link to='/workinprogress' >Settings</Link>
           </li>
           <li>
-            <a href="#">Logout</a>
+          <Link to="/login" >Logout</Link>
           </li>
         </ul>
       </div>

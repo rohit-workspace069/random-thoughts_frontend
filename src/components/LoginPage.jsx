@@ -31,7 +31,7 @@ function LoginPage() {
                     setreturnMessage("Account not exist, SignUp Now !");
                     setIsVisible(true);
                 } else if (serverResponse === "correct password") {
-                    navigate('/homepage');
+                    navigate('/profilepage');
                 } else {
                     setreturnMessage("your password was incorrect. Try again with correct password");
                     setIsVisible(true);
@@ -71,9 +71,7 @@ function LoginPage() {
                             required
                         />
                     </div>
-                    <a href="#" className="forgot-password">
-                        Forgot password?
-                    </a>
+                    <Link className="forgot-password" to='/workinprogress' >Forgot password?</Link>
                     <button type="submit" className="login-button">
                         Login
                     </button>

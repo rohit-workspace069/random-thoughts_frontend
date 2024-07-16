@@ -6,7 +6,7 @@ function Post(props) {
     <div className="Post">
       <div className="user-detail">
         <div className="user-image">
-          <img src="#" alt="User Profile Pic." />
+          <img src="resources\rohitprofile.jpg" alt="Userprofile" />
         </div>
         <div className="user-name">{props.username} </div>
       </div>
