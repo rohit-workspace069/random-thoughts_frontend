@@ -7,6 +7,7 @@ function Header() {
     <header className="header">
       <div className="logo">
       <Link to="/" ><img src="resources\logo.png" alt="logo" /></Link>
+      Random Thoughts
       </div>
       <nav className="nav">
         <ul>

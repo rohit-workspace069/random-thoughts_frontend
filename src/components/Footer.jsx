@@ -56,7 +56,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-copy">
-        <p>&copy; 2024 social media app. All right reserved</p>
+        <p>&copy; 2024 Random Thoughts app. All right reserved</p>
       </div>
     </footer>
   );
