@@ -19,7 +19,7 @@ function LoginPage() {
         event.preventDefault();
 
         const data = {
-            email: `${email}`,
+            username: `${email}`,
             password: `${password}`
         };
 

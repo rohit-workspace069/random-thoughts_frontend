@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route,  Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import LandingPage from './components/LandingPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoginPage from './components/LoginPage';
@@ -13,33 +14,34 @@ import ProgressWork from './components/ProgressWork';
 
 function App() {
   return (<div>
-     <BrowserRouter>
+    <BrowserRouter>
       < Routes>
-        <Route path="/" exact element={<div>
-          <Header/>
-          <Home/>
-          <Footer/>
-          </div>} />
+        <Route path="/" exact element={<LandingPage />} />
+        <Route path="/home" element={<div>
+          <Header />
+          <Home />
+          <Footer />
+        </div>} />
         <Route path="/profilepage" element={<div>
-          <Header/>
-          <ProfilePage/>
-          <Footer/>
-          </div>} />
+          <Header />
+          <ProfilePage />
+          <Footer />
+        </div>} />
         <Route path="/createpost" element={<div>
-          <Header/>
-          <CreatePost/>
-          <Footer/>
-          </div>} />
+          <Header />
+          <CreatePost />
+          <Footer />
+        </div>} />
         <Route path='/workinprogress' element={<div>
-          <Header/>
-          <ProgressWork/>
-          <Footer/>
-          </div>} />
-        <Route path="/signup" element={<RegisterPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
+          <Header />
+          <ProgressWork />
+          <Footer />
+        </div>} />
+        <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </ Routes>
     </BrowserRouter>
-    </div>
+  </div>
   );
 }
 
