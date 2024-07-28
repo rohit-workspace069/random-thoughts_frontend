@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./comonent-style/CreatePost.css";
 
-
-
 function CreatePost() {
-
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
+  const [content, setContent] = useState("");
 
   const navigate = useNavigate();
 
@@ -15,17 +12,25 @@ function CreatePost() {
     setContent(e.target.value);
   };
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add the new post to the database or API here
-    console.log('New post created:', content, image);
-    setContent(''); // clear the input field
-    setImage(null); // clear the image field
-    navigate('/profilepage');
+
+    const data = {
+      username: "Rohit default",
+      content: `${content}`,
+    };
+    axios
+      .post("http://localhost:5000/api/createpost", data)
+      .then((response) => {
+        const serverResponse = response.data;
+        console.log(serverResponse);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log("New post created:", content);
+    setContent("");
   };
 
   return (
@@ -42,15 +47,6 @@ function CreatePost() {
           className="create-post-input"
         />
         <div className="create-post-actions">
-          <label htmlFor="image-upload">
-            <i className="fas fa-image" />
-          </label>
-          <input
-            type="file"
-            id="image-upload"
-            onChange={handleImageChange}
-            accept="image/*"
-          />
           <button type="submit" className="create-post-button">
             Post
           </button>
@@ -58,7 +54,6 @@ function CreatePost() {
       </form>
     </div>
   );
-};
-
+}
 
 export default CreatePost;
