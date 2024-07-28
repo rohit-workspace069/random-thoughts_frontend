@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./comonent-style/Home.css";
-import axios from 'axios';
+import axios from "axios";
 
 import Post from "./Post";
 
 function Home() {
-
   const [posts, setPosts] = useState([]);
-  
+
   useEffect(() => {
     axios
-     .get("http://localhost:5000/api/allpost")
-     .then((response) => {
+      .get("http://localhost:5000/api/allpost")
+      .then((response) => {
         setPosts(response.data); // Update the state with the received data
       })
-     .catch((error) => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -25,17 +24,15 @@ function Home() {
         key={post.id}
         username={post.username}
         content={post.content}
-        commentCount={post.commentCount}
-        likeCount={post.like}
+        commentCount={post.comment_count}
+        likeCount={post.like_count}
       />
     );
   };
 
   return (
     <div>
-      <div className="Home">
-        {posts.map(addPost)}
-      </div>
+      <div className="Home">{posts.map(addPost)}</div>
     </div>
   );
 }
